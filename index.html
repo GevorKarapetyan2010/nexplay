@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NEXPLAY Gaming</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f4f5ff;color:#242344}
+header{background:white;padding:20px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:24px;font-weight:bold;color:#7457f5}
+main{max-width:800px;margin:auto;padding:20px}
+.hero{padding:30px 20px;border-radius:22px;background:linear-gradient(135deg,#e5ddff,#d9f1ff)}
+h1{font-size:38px;margin:12px 0}
+p{line-height:1.5;color:#686985}
+button{background:#7457f5;color:white;border:0;border-radius:10px;padding:12px 16px;font-weight:bold}
+input{width:100%;padding:13px;border:1px solid #ddd;border-radius:10px;margin:10px 0}
+.card{background:white;padding:16px;border-radius:15px;margin:10px 0;border:1px solid #e8e8f5}
+.row{display:flex;align-items:center;gap:12px}
+.avatar{font-size:28px;background:#eeeaff;padding:12px;border-radius:12px}
+.points{margin-left:auto;color:#7457f5;font-weight:bold}
+h2{margin-top:28px}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">NEXPLAY 🎮</div>
+  <span>Gaming Community</span>
+</header>
+<main>
+  <section class="hero">
+    <p>✦ YOUR GAMING UNIVERSE</p>
+    <h1>PLAY MORE.<br>LEVEL UP.</h1>
+    <p>Meet gamers, discover games and become a legend!</p>
+    <button onclick="document.getElementById('players').scrollIntoView({behavior:'smooth'})">Meet Players ↓</button>
+  </section>
+
+  <h2>🏆 Leaderboard</h2>
+  <div class="card row"><span class="avatar">🥷</span><div><b>PixelNinja</b><p>Cyber Strike</p></div><span class="points">2450 XP</span></div>
+  <div class="card row"><span class="avatar">🧝</span><div><b>LunaPlay</b><p>Shadow Realm</p></div><span class="points">2180 XP</span></div>
+  <div class="card row"><span class="avatar">🚀</span><div><b>StarFox</b><p>Galaxy Rush</p></div><span class="points">1960 XP</span></div>
+
+  <h2>🎮 Discover Games</h2>
+  <div class="card">⚡ <b>Cyber Strike</b><p>Action · Multiplayer</p></div>
+  <div class="card">🌙 <b>Shadow Realm</b><p>Adventure · RPG</p></div>
+  <div class="card">🚀 <b>Galaxy Rush</b><p>Racing · Arcade</p></div>
+
+  <h2 id="players">👥 Gaming Community</h2>
+  <input id="search" placeholder="Search players..." oninput="findPlayers()">
+  <div id="playerList">
+    <div class="card row" data-name="pixelninja"><span class="avatar">🥷</span><b>PixelNinja</b><button onclick="follow(this)">Follow +</button></div>
+    <div class="card row" data-name="lunaplay"><span class="avatar">🧝</span><b>LunaPlay</b><button onclick="follow(this)">Follow +</button></div>
+    <div class="card row" data-name="starfox"><span class="avatar">🦊</span><b>StarFox</b><button onclick="follow(this)">Follow +</button></div>
+  </div>
+
+  <h2>🎯 Daily Quest</h2>
+  <div class="card">
+    <b>Join the community</b>
+    <p>Earn 50 XP by completing your first quest.</p>
+    <button onclick="claim(this)">Claim +50 XP</button>
+  </div>
+  <p id="message"></p>
+  <footer><p>Made for gamers 💜 NEXPLAY © 2026</p></footer>
+</main>
+<script>
+function follow(button){
+  if(button.textContent==="Follow +"){
+    button.textContent="Following ✓";
+    button.style.background="#20a779";
+  }else{
+    button.textContent="Follow +";
+    button.style.background="#7457f5";
+  }
+}
+function findPlayers(){
+  const query=document.getElementById("search").value.toLowerCase();
+  document.querySelectorAll("#playerList [data-name]").forEach(player=>{
+    player.style.display=player.dataset.name.includes(query)?"flex":"none";
+  });
+}
+function claim(button){
+  button.textContent="Completed ✓";
+  button.disabled=true;
+  document.getElementById("message").textContent="🎉 Quest completed! You earned 50 XP!";
+}
+</script>
+</body>
+</html>
